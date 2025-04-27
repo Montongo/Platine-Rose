@@ -24,6 +24,62 @@ body {
   min-height: 100vh;
 }
 
+.shipping-button-container {
+  position: absolute;
+  bottom: 60px; /* Alineado con el otro */
+  right: 200px; /* Pegado a la derecha */
+}
+
+.shipping-button {
+  display: flex;
+  align-items: center;
+  background-color: var(--rosa-claro);
+  padding: 20px 15px;
+  border-radius: 20px;
+  font-family: var(--font-main);
+  font-size: 1.2rem;
+  color: var(--text-color);
+  
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: default;
+}
+
+.shipping-button:hover {
+  background-color: var(--rosa-hover);
+  transform: scale(1.05);
+}
+
+.social-button-container {
+  position: absolute;
+  bottom: 60px; /* Lo ponemos cerquita del footer */
+  left: 200px;   /* Pegado a la izquierda */
+}
+
+.social-button {
+  display: flex;
+  align-items: center;
+  background-color: var(--rosa-claro);
+  padding: 10px 15px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: var(--text-color);
+  font-family: var(--font-main);
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.social-button:hover,
+.social-button:focus {
+  background-color: var(--rosa-hover);
+  transform: scale(1.05);
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 8px;
+}
+
 /* Banner/Header */
 .banner {
   background-color: var(--rosa-claro);
@@ -102,50 +158,65 @@ body {
 footer {
   background-color: var(--rosa-claro);
   text-align: center;
-  padding: 20px 300px;
+  padding: 10px 700px;
   border-top: 1px solid rgba(255, 255, 255, 0.3);
   max-width: 600px;
   margin: 0 auto;
 border-radius: 20px;
-}
-footer h1,
-footer h2 {
-  margin: 5px;
-  color: var(--text-color); 
-  font-weight: normal;
-}
-footer h1 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
+
+
+.logo-footer {
+  display: block;
+  margin: 0 auto;
+  width: 175px; /* Ajusta el tamaño aquí */
+  height: auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
-footer h2 {
-  font-size: 1.2rem;
-}
-.footer-icon {
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-  vertical-align: middle;
-}
-footer a {
-  color: var(--text-color); 
-  text-decoration: none;
-}
-footer a:hover {
-  color: var(--rosa-hover);
+.logo-footer:hover,
+.logo-footer:focus {
+  transform: scale(1.1);
+  box-shadow: 0 4px 20px rgba(255, 105, 180, 0.6);
+  outline: none;
 }
 
-/* Responsive */
+
+/* Responsive para pantallas pequeñas */
 @media (max-width: 600px) {
-  .buttons-container {
-    width: 100%;
-    gap: 15px;
+  /* Contenedor del footer */
+  footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
   }
-  .btn {
-    width: 100%;
-    box-sizing: border-box;
+
+  /* El logo se ajusta más pequeño */
+  .logo-footer {
+    width: 100px; /* Reduce el tamaño en móviles */
+    margin-bottom: 10px; /* Añade espacio debajo del logo */
+  }
+
+  /* El botón de Instagram se acomoda debajo del logo */
+  .social-button-container,
+  .shipping-button-container {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 10px; /* Espacio entre los botones */
+  }
+
+  /* Botón de Instagram */
+  .social-button {
+    font-size: 1rem; /* Reduce el tamaño del texto */
+    padding: 8px 15px; /* Ajusta el padding */
+  }
+
+  /* Botón de Envíos */
+  .shipping-button {
+    font-size: 1rem; /* Reduce el tamaño del texto */
+    padding: 8px 15px; /* Ajusta el padding */
   }
 }
