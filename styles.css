@@ -24,6 +24,16 @@ body {
   min-height: 100vh;
 }
 
+
+.image-above-buttons {
+  width: 400px; /* Establece un ancho específico para la imagen */
+  height: auto; /* Mantiene la relación de aspecto de la imagen */
+  /* La hace un bloque para que ocupe todo el espacio disponible */
+  border-radius: 10px; /* Bordes redondeados (opcional) */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Sombra opcional para la imagen */
+}
+
+
 .shipping-button-container {
   position: absolute;
   bottom: 60px; /* Alineado con el otro */
