@@ -1,113 +1,148 @@
-body {
-    font-family: 'Dancing Script', cursive;
+/* styles.css */
+:root {
+    --rosa-claro: #e8dcdc;
+    --rosa-hover: #f0e0e0;
+    --font-main: 'Dancing Script', cursive;
+    --outline-focus: hotpink;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  
+  body {
     margin: 0;
     padding: 0;
+    font-family: var(--font-main);
     background-image: url('Backgroundimage/backgroundroses.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+  
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-height: 100vh;
-    footer {
-        background-color: #e8dcdc;
-        text-align: center;
-        padding: 20px 0;
-        width: 100%;
-        border-top: 1px solid rgba(255, 255, 255, 0.3);
-        margin-top: 30px;
-    }
-    
-    footer h1, footer h2 {
-        font-family: 'Dancing Script', cursive;
-        color: #000;
-        margin: 5px;
-    }
-    
-    footer h1 {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2rem;
-    }
-    
-    footer h2 {
-        font-size: 1.5rem;
-    }
-    
-    .footer-icon {
-        width: 30px; 
-        height: 30px; 
-        margin-right: 10px; 
-        vertical-align: middle; 
-    }
-    
-    footer a {
-        color: #000;
-        text-decoration: none;
-    }
-    
-    footer a:hover {
-        color: #f0e0e0;
-    }
-
-.container {
+  }
+  
+  /* Banner/Header */
+  .banner {
+    background-color: var(--rosa-claro);
+    padding: 20px;
+    text-align: center;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin: 20px auto 0;
+    max-width: 1000px;
+  }
+  
+  .logo {
+    display: block;
+    margin: 0 auto;
     width: 100%;
+    max-width: 350px;
+    height: auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .logo:hover,
+  .logo:focus {
+    transform: scale(1.1);
+    box-shadow: 0 4px 20px rgba(255, 105, 180, 0.6);
+    outline: none;
+  }
+  
+  /* Contenedor de botones con overlay semitransparente */
+  .container {
+    position: relative;
+    width: 100%;
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px;
-    flex-direction: column;
-}
-
-.banner {
-    background-color: #e8dcdc;
-    padding: 20px;
-    border-radius: 20px;
-    text-align: center;
-    width: 100%;
-    max-width: 1000px;
-    box-sizing: border-box;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    margin-top: 20px;
-}
-
-.logo {
-    max-width: 350px;
-    width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.logo:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 20px rgba(255, 105, 180, 0.6);
-}
-
-.buttons-container {
-    margin-top: 30px;
+  }
+  .container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+  }
+  
+  .buttons-container {
     display: flex;
-    justify-content: space-around;
-    width: 100%;
-}
-
-.btn {
-    background-color: #e8dcdc;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  /* Botones/links */
+  .btn {
+    display: inline-block;
+    background-color: var(--rosa-claro);
     padding: 25px 50px;
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: #000;
-    font-family: 'Dancing Script', cursive;
-    font-size: 24px;
+    font-family: var(--font-main);
+    font-size: 1.5rem;
+    text-decoration: none;
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.btn:hover {
-    background-color: #f0e0e0;
+  }
+  .btn:hover,
+  .btn:focus {
+    background-color: var(--rosa-hover);
     transform: scale(1.1);
-}
+  }
+  .btn:focus {
+    outline: 2px solid var(--outline-focus);
+    outline-offset: 3px;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: var(--rosa-claro);
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  footer h1,
+  footer h2 {
+    margin: 5px;
+    color: #000;
+  }
+  footer h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+  }
+  .footer-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  footer a {
+    color: #000;
+    text-decoration: none;
+  }
+  footer a:hover {
+    color: var(--rosa-hover);
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    .buttons-container {
+      flex-direction: column;
+      gap: 15px;
+    }
+    .btn {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+  
