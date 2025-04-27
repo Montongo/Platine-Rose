@@ -2,15 +2,12 @@
 :root {
     --rosa-claro: #e8dcdc;
     --rosa-hover: #f0e0e0;
-    --font-main: 'Dancing Script', cursive;
+    --font-main: 'ABeeZee', ;
     --outline-focus: hotpink;
+    --text-color: #68412f;
   }
   
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
+ 
   
   body {
     margin: 0;
@@ -63,19 +60,18 @@
     align-items: center;
     padding: 10px;
   }
-  .container::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: -1;
-  }
+ 
   
   .buttons-container {
     display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
+    flex-direction: column;   /* apila los botones verticalmente */
+    align-items: center;      /* los centra horizontalmente */
+    gap: 20px;                /* separa los botones entre sí */
+    width: 100%;
+    max-width: 400px;         /* opcional: limita el ancho del stack */
+    margin: 30px auto;        /* centra el stack en el contenedor */
   }
+  
   
   /* Botones/links */
   .btn {
@@ -84,7 +80,7 @@
     padding: 25px 50px;
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #000;
+    color: var(--text-color); 
     font-family: var(--font-main);
     font-size: 1.5rem;
     text-decoration: none;
@@ -112,7 +108,8 @@
   footer h1,
   footer h2 {
     margin: 5px;
-    color: #000;
+    color: var(--text-color); 
+    font-weight: normal;
   }
   footer h1 {
     display: flex;
@@ -127,7 +124,7 @@
     vertical-align: middle;
   }
   footer a {
-    color: #000;
+    color: var(--text-color); 
     text-decoration: none;
   }
   footer a:hover {
@@ -137,7 +134,7 @@
   /* Responsive */
   @media (max-width: 600px) {
     .buttons-container {
-      flex-direction: column;
+      width: 100%;
       gap: 15px;
     }
     .btn {
