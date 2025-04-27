@@ -1,145 +1,144 @@
 /* styles.css */
 :root {
-    --rosa-claro: #e8dcdc;
-    --rosa-hover: #f0e0e0;
-    --font-main: 'ABeeZee', ;
-    --outline-focus: hotpink;
-    --text-color: #68412f;
-  }
-  
- 
-  
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: var(--font-main);
-    background-image: url('Backgroundimage/backgroundroses.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-  
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 100vh;
-  }
-  
-  /* Banner/Header */
-  .banner {
-    background-color: var(--rosa-claro);
-    padding: 20px;
-    text-align: center;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    margin: 20px auto 0;
-    max-width: 1000px;
-  }
-  
-  .logo {
-    display: block;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 350px;
-    height: auto;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .logo:hover,
-  .logo:focus {
-    transform: scale(1.1);
-    box-shadow: 0 4px 20px rgba(255, 105, 180, 0.6);
-    outline: none;
-  }
-  
-  /* Contenedor de botones con overlay semitransparente */
-  .container {
-    position: relative;
-    width: 100%;
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-  }
- 
-  
+  --rosa-claro: #e8dcdc;
+  --rosa-hover: #f0e0e0;
+  --font-main: 'ABeeZee', ;
+  --outline-focus: hotpink;
+  --text-color: #68412f;
+}
+
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+  background-image: url('Backgroundimage/backgroundroses.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
+/* Banner/Header */
+.banner {
+  background-color: var(--rosa-claro);
+  padding: 20px;
+  text-align: center;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin: 20px auto 0;
+  max-width: 1000px;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.logo:hover,
+.logo:focus {
+  transform: scale(1.1);
+  box-shadow: 0 4px 20px rgba(255, 105, 180, 0.6);
+  outline: none;
+}
+
+/* Contenedor de botones con overlay semitransparente */
+.container {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;   /* apila los botones verticalmente */
+  align-items: center;      /* los centra horizontalmente */
+  gap: 20px;                /* separa los botones entre sí */
+  width: 100%;
+  max-width: 400px;         /* opcional: limita el ancho del stack */
+  margin: 30px auto;        /* centra el stack en el contenedor */
+}
+
+
+/* Botones/links */
+.btn {
+  display: inline-block;
+  background-color: var(--rosa-claro);
+  padding: 25px 50px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--text-color); 
+  font-family: var(--font-main);
+  font-size: 1.5rem;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.btn:hover,
+.btn:focus {
+  background-color: var(--rosa-hover);
+  transform: scale(1.1);
+}
+.btn:focus {
+  outline: 2px solid var(--outline-focus);
+  outline-offset: 3px;
+}
+
+/* Footer */
+footer {
+  background-color: var(--rosa-claro);
+  text-align: center;
+  padding: 20px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+footer h1,
+footer h2 {
+  margin: 5px;
+  color: var(--text-color); 
+  font-weight: normal;
+}
+footer h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+.footer-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+footer a {
+  color: var(--text-color); 
+  text-decoration: none;
+}
+footer a:hover {
+  color: var(--rosa-hover);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
   .buttons-container {
-    display: flex;
-    flex-direction: column;   /* apila los botones verticalmente */
-    align-items: center;      /* los centra horizontalmente */
-    gap: 20px;                /* separa los botones entre sí */
     width: 100%;
-    max-width: 400px;         /* opcional: limita el ancho del stack */
-    margin: 30px auto;        /* centra el stack en el contenedor */
+    gap: 15px;
   }
-  
-  
-  /* Botones/links */
   .btn {
-    display: inline-block;
-    background-color: var(--rosa-claro);
-    padding: 25px 50px;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: var(--text-color); 
-    font-family: var(--font-main);
-    font-size: 1.5rem;
-    text-decoration: none;
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
   }
-  .btn:hover,
-  .btn:focus {
-    background-color: var(--rosa-hover);
-    transform: scale(1.1);
-  }
-  .btn:focus {
-    outline: 2px solid var(--outline-focus);
-    outline-offset: 3px;
-  }
-  
-  /* Footer */
-  footer {
-    background-color: var(--rosa-claro);
-    text-align: center;
-    padding: 20px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
-  }
-  footer h1,
-  footer h2 {
-    margin: 5px;
-    color: var(--text-color); 
-    font-weight: normal;
-  }
-  footer h1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-  }
-  .footer-icon {
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
-    vertical-align: middle;
-  }
-  footer a {
-    color: var(--text-color); 
-    text-decoration: none;
-  }
-  footer a:hover {
-    color: var(--rosa-hover);
-  }
-  
-  /* Responsive */
-  @media (max-width: 600px) {
-    .buttons-container {
-      width: 100%;
-      gap: 15px;
-    }
-    .btn {
-      width: 100%;
-      box-sizing: border-box;
-    }
-  }
-  
+}
