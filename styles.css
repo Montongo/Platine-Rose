@@ -24,7 +24,6 @@ body {
   min-height: 100vh;
 }
 
-
 .image-above-buttons {
   width: 400px; /* Establece un ancho específico para la imagen */
   height: auto; /* Mantiene la relación de aspecto de la imagen */
@@ -35,9 +34,7 @@ body {
 
 
 .shipping-button-container {
-  position: absolute;
-  bottom: 60px; /* Alineado con el otro */
-  right: 200px; /* Pegado a la derecha */
+  margin-top: 0px; /* Espacio arriba */
 }
 
 .shipping-button {
@@ -60,9 +57,7 @@ body {
 }
 
 .social-button-container {
-  position: absolute;
-  bottom: 60px; /* Lo ponemos cerquita del footer */
-  left: 200px;   /* Pegado a la izquierda */
+  margin-bottom: 0px; /* Espacio abajo */
 }
 
 .social-button {
@@ -83,6 +78,7 @@ body {
   background-color: var(--rosa-hover);
   transform: scale(1.05);
 }
+
 
 .social-icon {
   width: 40px;
@@ -168,7 +164,7 @@ body {
 footer {
   background-color: var(--rosa-claro);
   text-align: center;
-  padding: 10px 700px;
+  padding: 0px 40px;
   border-top: 1px solid rgba(255, 255, 255, 0.3);
   max-width: 600px;
   margin: 0 auto;
@@ -205,8 +201,12 @@ border-radius: 20px;
 
   /* El logo se ajusta más pequeño */
   .logo-footer {
-    width: 100px; /* Reduce el tamaño en móviles */
-    margin-bottom: 10px; /* Añade espacio debajo del logo */
+    display: block;
+    margin: 0 auto;
+    width: 175px; /* Ajusta el tamaño aquí */
+    height: auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
   }
 
   /* El botón de Instagram se acomoda debajo del logo */
@@ -220,13 +220,29 @@ border-radius: 20px;
 
   /* Botón de Instagram */
   .social-button {
-    font-size: 1rem; /* Reduce el tamaño del texto */
-    padding: 8px 15px; /* Ajusta el padding */
+    display: flex;
+    align-items: center;
+    background-color: var(--rosa-claro);
+    padding: 10px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-family: var(--font-main);
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
   }
 
   /* Botón de Envíos */
   .shipping-button {
-    font-size: 1rem; /* Reduce el tamaño del texto */
-    padding: 8px 15px; /* Ajusta el padding */
+    display: flex;
+    align-items: center;
+    background-color: var(--rosa-claro);
+    padding: 20px 15px;
+    border-radius: 20px;
+    font-family: var(--font-main);
+    font-size: 1.2rem;
+    color: var(--text-color);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: default;
   }
 }
