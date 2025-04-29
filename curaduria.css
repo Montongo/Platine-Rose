@@ -21,33 +21,33 @@
   }
 
   /* Estilo para el botón Curaduría */
-#curaduria-btn {
+  #curaduria-btn {
     background-color: var(--rosa-claro);
     border: 2px solid var(--text-color);
     border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 12px 25px; /* Más grande en pantallas grandes */
+    font-size: 18px;
     color: var(--text-color);
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
+}
   
   #curaduria-btn:hover {
     background-color: var(--rosa-hover);
   }
-  
-  /* Estilo para los botones de categorías */
-  #category-buttons button {
-    background-color: var(--rosa-claro);
-    border: 2px solid var(--text-color);
-    border-radius: 5px;
-    padding: 10px 15px;
-    margin: 5px;
-    font-size: 14px;
-    color: var(--text-color);
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+
+/* Estilo para los botones de categorías */
+#category-buttons button {
+  background-color: var(--rosa-claro);
+  border: 2px solid var(--text-color);
+  border-radius: 5px;
+  padding: 12px 20px; /* Más grande en pantallas grandes */
+  margin: 10px;
+  font-size: 16px;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
   
   #category-buttons button:hover {
     background-color: var(--rosa-hover);
@@ -156,20 +156,51 @@
     outline: none;
   }
   
+
+
+  
   /* Responsive */
-  @media (max-width: 600px) {
-    .main-content {
-      padding: 10px;
+
+  @media screen and (max-width: 768px) {
+    body {
+        font-size: 14px; /* Reduce el tamaño de la fuente para móviles */
     }
-    .card {
-      padding: 15px;
-      margin: 10px 0;
+
+    #curaduria-btn {
+        font-size: 16px; /* Fuente más pequeña para el botón */
+        padding: 10px 20px; /* Ajuste en el tamaño de los botones */
     }
+
+    #category-buttons button {
+        font-size: 14px; /* Fuente más pequeña para botones */
+        padding: 10px 15px; /* Ajuste en el tamaño de los botones */
+    }
+
+    .image-gallery {
+        grid-template-columns: 1fr 1fr; /* Dos columnas en pantallas pequeñas */
+    }
+
+    .banner {
+        padding: 15px; /* Ajuste en el tamaño del banner */
+    }
+
     .logo {
-      max-width: 250px;
+        max-width: 300px; /* Hacer la imagen más pequeña en móviles */
     }
-    .logo-footer {
-      width: 150px;
+}
+  @media screen and (max-width: 480px) {
+    #curaduria-btn {
+        font-size: 14px; /* Fuente más pequeña para el botón */
+        padding: 8px 15px; /* Ajuste en el tamaño de los botones */
     }
-  }
+
+    #category-buttons button {
+        font-size: 12px; /* Fuente más pequeña para botones */
+        padding: 8px 12px; /* Ajuste en el tamaño de los botones */
+    }
+
+    .image-gallery {
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+    }
+}
   
