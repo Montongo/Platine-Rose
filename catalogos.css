@@ -22,7 +22,7 @@ body {
 
 /* Estilo para el encabezado */
 h1 {
-  color: var(--text-dark); /* Cambié a negro */
+  color:#000000; /* Cambié a negro */
   text-align: center;
   font-size: 2.5rem;
   margin-top: 20px;
