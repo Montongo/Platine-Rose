@@ -3,7 +3,15 @@
   --rosa-hover: #f0e0e0;
   --font-main: 'ABeeZee', sans-serif;
   --outline-focus: hotpink;
-  --text-color: #68412f;
+  --text-color: #68412f; /* Color de texto que ya usas */
+}
+#category-buttons,
+#subcategory-buttons {
+  display: flex;
+  flex-direction: column; /* Alinea los botones en columna */
+  gap: 10px; /* Espacio entre botones */
+  align-items: center; /* Centrado horizontal */
+  padding: 10px;
 }
 
 body {
@@ -39,6 +47,7 @@ body {
   height: auto;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .logo:hover,
 .logo:focus {
   transform: scale(1.1);
@@ -66,33 +75,38 @@ body {
 /* Botones de categorías */
 #category-buttons {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
   padding: 10px;
+  align-items: center; /* Esto centra los botones horizontalmente */
 }
+
+
 #category-buttons button {
-  background-color: var(--rosa-claro);
-  border: 2px solid var(--text-color);
-  border-radius: 5px;
-  padding: 10px 15px;
-  margin: 5px;
-  font-size: 14px;
-  color: var(--text-color);
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  padding: 12px 25px; /* Ajusta el tamaño del botón */
+  font-size: 16px; /* Ajusta el tamaño del texto */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  background-color: #68412f; /* Nuevo color de fondo */
+  color: white; /* Color del texto */
+  border: none; /* Quita el borde */
+  border-radius: 5px; /* Bordes redondeados */
+  transition: background-color 0.3s; /* Efecto de transición al pasar el ratón */
 }
+
 #category-buttons button:hover {
-  background-color: var(--rosa-hover);
+  background-color: #5a3728; /* Cambio de color al pasar el ratón (tono más oscuro) */
 }
 
 /* Galería */
 .image-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 15px;
   padding: 20px;
   box-sizing: border-box;
 }
+
 .image-gallery img {
   width: 100%;
   height: auto;
@@ -105,6 +119,9 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
+
+
+
 /* Footer opcional */
 footer {
   margin-top: auto;
@@ -115,22 +132,26 @@ footer {
   color: var(--text-color);
 }
 
-/* Responsividad */
-@media (max-width: 600px) {
-  .banner {
-    padding: 15px;
-    margin: 15px;
-    border-radius: 15px;
+/* Media Queries para móvil */
+@media (max-width: 768px) {
+  #category-buttons {
+      gap: 8px; /* Menos espacio entre botones en móviles */
   }
+
   #category-buttons button {
-    font-size: 13px;
-    padding: 8px 12px;
+      padding: 10px 20px; /* Ajuste de tamaño de botón para móviles */
+      font-size: 14px; /* Ajuste del tamaño de fuente */
   }
-  .image-gallery {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 10px;
+}
+
+/* Media Queries para escritorio */
+@media (min-width: 769px) {
+  #category-buttons {
+      gap: 12px; /* Un poco más de espacio entre los botones en PC */
   }
-  .logo {
-    max-width: 280px;
+
+  #category-buttons button {
+      padding: 15px 30px; /* Botones más grandes para PC */
+      font-size: 18px; /* Fuente más grande para PC */
   }
 }

@@ -486,80 +486,100 @@ const imagePaths = {
     }
 };
 
-document.getElementById('curaduria-btn').addEventListener('click', function() {
+document.getElementById('curaduria-btn').addEventListener('click', function () {
     const categories = document.getElementById('category-buttons');
-    categories.style.display = (categories.style.display === 'none') ? 'block' : 'none';
+    const subcategories = document.getElementById('subcategory-buttons');
+    const gallery = document.getElementById('gallery');
+
+    // Limpiar subcategorías e imágenes
+    subcategories.innerHTML = '';
+    gallery.innerHTML = '';
+
+    // Mostrar u ocultar categorías y forzar estilo correcto
+    if (categories.style.display === 'none' || categories.style.display === '') {
+        categories.style.display = 'flex';
+        categories.style.flexDirection = 'column';
+        categories.style.alignItems = 'center';
+    } else {
+        categories.style.display = 'none';
+    }
 });
 
-function showImages(category) {
-    const gallery = document.getElementById('gallery');
-    const subcategories = document.getElementById('subcategory-buttons');
+    
 
-    // Limpiar galería y subcategorías
-    gallery.innerHTML = '';
-    subcategories.innerHTML = '';
+        function showImages(category) {
+            const gallery = document.getElementById('gallery');
+            const subcategories = document.getElementById('subcategory-buttons');
+            const categories = document.getElementById('category-buttons');
+            
+            // Limpiar galería y subcategorías
+            gallery.innerHTML = '';
+            subcategories.innerHTML = '';
 
-    // Verificar si la categoría tiene subcategorías
-    if (category === 'anillos' || category === 'aretes' || category === 'collares') {
-        let subcatHTML = '';
+            // Ocultar botones de categorías al seleccionar una categoría
+            categories.style.display = 'none';
 
-        if (category === 'anillos') {
-            subcatHTML = `
-                <button onclick="showImages('anillos-dorados')">Anillos Dorados</button>
-                <button onclick="showImages('anillos-plateados')">Anillos Plateados</button>
-            `;
-        } else if (category === 'aretes') {
-            subcatHTML = `
-                <button onclick="showImages('aretes-dorados')">Aretes Dorados</button>
-                <button onclick="showImages('aretes-plateados')">Aretes Plateados</button>
-                <button onclick="showImages('aretes-aretitos')">Aretitos (Plateados y Dorados)</button>
-                <button onclick="showImages('aretes-arracadas')">Arracadas (Plateadas y Doradas)</button>
-                <button onclick="showImages('aretes-cadenas_ear_cuff')">Cadenas Ear Cuff</button>
-                <button onclick="showImages('aretes-ear_cuff')">Ear Cuff</button>
-            `;
-        } else if (category === 'collares') {
-            subcatHTML = `
-                <button onclick="showImages('collares-dorados')">Collares Dorados</button>
-                <button onclick="showImages('collares-plateados')">Collares Plateados</button>
-            `;
+            // Verificar si la categoría tiene subcategorías
+            if (category === 'anillos' || category === 'aretes' || category === 'collares') {
+                let subcatHTML = '';
+
+                if (category === 'anillos') {
+                    subcatHTML = `
+                        <button onclick="showImages('anillos-dorados')">Anillos Dorados</button>
+                        <button onclick="showImages('anillos-plateados')">Anillos Plateados</button>
+                    `;
+                } else if (category === 'aretes') {
+                    subcatHTML = `
+                        <button onclick="showImages('aretes-dorados')">Aretes Dorados</button>
+                        <button onclick="showImages('aretes-plateados')">Aretes Plateados</button>
+                        <button onclick="showImages('aretes-aretitos')">Aretitos (Plateados y Dorados)</button>
+                        <button onclick="showImages('aretes-arracadas')">Arracadas (Plateadas y Doradas)</button>
+                        <button onclick="showImages('aretes-cadenas_ear_cuff')">Cadenas Ear Cuff</button>
+                        <button onclick="showImages('aretes-ear_cuff')">Ear Cuff</button>
+                    `;
+                } else if (category === 'collares') {
+                    subcatHTML = `
+                        <button onclick="showImages('collares-dorados')">Collares Dorados</button>
+                        <button onclick="showImages('collares-plateados')">Collares Plateados</button>
+                    `;
+                }
+
+                subcategories.innerHTML = subcatHTML;
+                return;
+            }
+
+            // Si no es una categoría principal, cargar imágenes
+            let imagesToShow = [];
+            if (category === 'anillos-dorados') {
+                imagesToShow = imagePaths.anillos.dorados;
+            } else if (category === 'anillos-plateados') {
+                imagesToShow = imagePaths.anillos.plateados;
+            } else if (category === 'aretes-dorados') {
+                imagesToShow = imagePaths.aretes.dorados;
+            } else if (category === 'aretes-plateados') {
+                imagesToShow = imagePaths.aretes.plateados;
+            } else if (category === 'aretes-aretitos') {
+                imagesToShow = imagePaths.aretes.aretitos;
+            } else if (category === 'aretes-arracadas') {
+                imagesToShow = imagePaths.aretes.arracadas;
+            } else if (category === 'aretes-cadenas_ear_cuff') {
+                imagesToShow = imagePaths.aretes.cadenas_ear_cuff;
+            } else if (category === 'aretes-ear_cuff') {
+                imagesToShow = imagePaths.aretes.ear_cuff;
+            } else if (category === 'collares-dorados') {
+                imagesToShow = imagePaths.collares.dorados;
+            } else if (category === 'collares-plateados') {
+                imagesToShow = imagePaths.collares.plateados;
+            } else {
+                imagesToShow = imagePaths[category] || [];
+            }
+
+            imagesToShow.forEach(path => {
+                const img = document.createElement('img');
+                img.src = path;
+                gallery.appendChild(img);
+            });
         }
-
-        subcategories.innerHTML = subcatHTML;
-        return;
-    }
-
-    // Si no es una categoría principal, cargar imágenes
-    let imagesToShow = [];
-    if (category === 'anillos-dorados') {
-        imagesToShow = imagePaths.anillos.dorados;
-    } else if (category === 'anillos-plateados') {
-        imagesToShow = imagePaths.anillos.plateados;
-    } else if (category === 'aretes-dorados') {
-        imagesToShow = imagePaths.aretes.dorados;
-    } else if (category === 'aretes-plateados') {
-        imagesToShow = imagePaths.aretes.plateados;
-    } else if (category === 'aretes-aretitos') {
-        imagesToShow = imagePaths.aretes.aretitos;
-    } else if (category === 'aretes-arracadas') {
-        imagesToShow = imagePaths.aretes.arracadas;
-    } else if (category === 'aretes-cadenas_ear_cuff') {
-        imagesToShow = imagePaths.aretes.cadenas_ear_cuff;
-    } else if (category === 'aretes-ear_cuff') {
-        imagesToShow = imagePaths.aretes.ear_cuff;
-    } else if (category === 'collares-dorados') {
-        imagesToShow = imagePaths.collares.dorados;
-    } else if (category === 'collares-plateados') {
-        imagesToShow = imagePaths.collares.plateados;
-    } else {
-        imagesToShow = imagePaths[category] || [];
-    }
-
-    imagesToShow.forEach(path => {
-        const img = document.createElement('img');
-        img.src = path;
-        gallery.appendChild(img);
-    });
-}
 </script>
 
 </body>
