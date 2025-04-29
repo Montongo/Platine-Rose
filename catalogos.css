@@ -21,60 +21,98 @@ body {
 }
 
 /* Estilo para el encabezado */
-h1 {
-  color:#000000; /* Cambié a negro */
-  text-align: center;
-  font-size: 2.5rem;
-  margin-top: 20px;
-}
-
-/* Estilo para los botones de descarga */
-.catalogos-buttons a {
-  background-color: var(--rosa-claro);
-  border: 2px solid var(--text-color);
-  border-radius: 5px;
-  padding: 12px 20px;
+.btn {
+  background-color: #e8dcdc;
+  border: 2px solid #68412f;
+  padding: 10px 20px;
   margin: 10px;
+  text-decoration: none;
   font-size: 16px;
-  color: var(--text-color);
+  color: #68412f;
+  border-radius: 5px;
+  display: inline-block;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  text-decoration: none; /* Asegura que no haya subrayado */
+  transition: background-color 0.3s;
 }
 
-.catalogos-buttons a:hover {
-  background-color: var(--rosa-hover);
+.btn:hover {
+  background-color: #f0e0e0;
 }
 
+/* Estilos para el footer */
 footer {
-  text-align: center;
   padding: 20px;
-  background-color: #fff;
+  text-align: center;
 }
 
-/* Media Queries para dispositivos móviles */
-@media screen and (max-width: 768px) {
-  body {
-      font-size: 14px;
-  }
-
-  .catalogos-buttons a {
-      font-size: 14px;
-      padding: 10px 15px;
-  }
-
-  h1 {
-      font-size: 2rem;
-  }
+/* Estilo para el logo en el footer */
+.logo-footer {
+  width: 150px;  /* Ajusta el tamaño del logo */
+  height: auto;  /* Mantiene la proporción */
+  display: block;
+  margin: 0 auto;  /* Centra el logo */
 }
 
-@media screen and (max-width: 480px) {
+/* Estilo para el texto en el footer */
+footer p {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+}
+/* Media Queries para pantallas más pequeñas (menos de 768px) */
+@media (max-width: 768px) {
+  /* Ajusta el tamaño de los títulos */
   h1 {
-      font-size: 1.8rem;
+      font-size: 24px;
   }
 
-  .catalogos-buttons a {
+  h2 {
+      font-size: 20px;
+  }
+
+  /* Ajusta los botones para pantallas medianas */
+  .btn {
+      font-size: 14px;
+      padding: 12px 16px;
+      width: auto; /* Permite que el botón se ajuste al contenido */
+  }
+
+  .catalogos-buttons {
+      flex-direction: column; /* Pone los botones en columna */
+  }
+
+  .content-container {
+      padding: 10px;
+  }
+
+  footer p {
       font-size: 12px;
-      padding: 8px 12px;
+  }
+}
+
+/* Media Queries para pantallas pequeñas (menos de 480px) */
+@media (max-width: 480px) {
+  h1 {
+      font-size: 22px;
+      margin-top: 15px;
+  }
+
+  h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+  }
+
+  .btn {
+      font-size: 12px;
+      padding: 10px 14px;
+      width: 100%; /* Asegura que los botones ocupen todo el ancho en pantallas pequeñas */
+  }
+
+  .logo-footer {
+      width: 120px;  /* Ajusta el tamaño del logo en pantallas pequeñas */
+  }
+
+  footer {
+      padding: 15px;
   }
 }
