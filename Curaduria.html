@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Curaduría</title>
+    <style>
+            body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+  background-image: url('Backgroundimage/backgroundroses.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  
+
+}
+
+    </style>
+    <link rel="stylesheet" href="curaduria.css">
+</head>
+<body>
+
+    <button id="curaduria-btn">Curaduría</button>
+
+    <div id="category-buttons">
+        <button onclick="showImages('anillos')">Anillos</button>
+        <button onclick="showImages('collares')">Collares</button>
+        <button onclick="showImages('ojo_turco')">Joyería de Ojo Turco</button>
+        <button onclick="showImages('playa')">Joyería de Playa</button>
+        <button onclick="showImages('personalizable')">Joyería Personalizable</button>
+        <button onclick="showImages('perlas')">Perlas</button>
+        <button onclick="showImages('pulseras')">Pulseras</button>
+        <button onclick="showImages('aretes')">Todo para tu oreja</button>
+    </div>
+    
+    <div id="subcategory-buttons"></div> <!-- OJO: nuevo contenedor de subcategorías -->
+    
+    <div class="image-gallery" id="gallery"></div>
+
+<script>
+const imagePaths = {
+    anillos: {
+           dorados: [
+        '/Curaduria/CURADURÍA/ANILLOS/ANILLOS DORADOS/124194L.jpg','/Curaduria/CURADURÍA/ANILLOS/ANILLOS DORADOS/124218.jpg',
+'/Curaduria/CURADURÍA/ANILLOS/ANILLOS DORADOS/124396.jpg',
+'/Curaduria/CURADURÍA/ANILLOS/ANILLOS DORADOS/124407.jpg',
+'/Curaduria/CURADURÍA/ANILLOS/ANILLOS DORADOS/124466.jpg',
+'/Curaduria/CURADURÍA/ANILLOS/ANILLOS DORADOS/124488.jpg',
+'/Curaduria/CURADURÍA/ANILLOS/ANILLOS DORADOS/324064.jpg',
+'/Curaduria/CURADURÍA/ANILLOS/ANILLOS DORADOS/324066.jpg',
+'/Curaduria/CURADURÍA/ANILLOS/ANILLOS DORADOS/324136.jpg',
+'/Curaduria/CURADURÍA/ANILLOS/ANILLOS DORADOS/424189.jpg',
+'/Curaduria/CURADURÍA/ANILLOS/ANILLOS DORADOS/424217.jpg',
+'/Curaduria/CURADURÍA/ANILLOS/ANILLOS DORADOS/424364.jpg',
+'/Curaduria/CURADURÍA/ANILLOS/ANILLOS DORADOS/424406.jpg',
+'/Curaduria/CURADURÍA/ANILLOS/ANILLOS DORADOS/424424.jpg',
+'/Curaduria/CURADURÍA/ANILLOS/ANILLOS DORADOS/425039.jpg',
+'/Curaduria/CURADURÍA/ANILLOS/ANILLOS DORADOS/425097.jpg',
+'/Curaduria/CURADURÍA/ANILLOS/ANILLOS DORADOS/425167.jpg',
+'/Curaduria/CURADURÍA/ANILLOS/ANILLOS DORADOS/425195L.jpg',
+'/Curaduria/CURADURÍA/ANILLOS/ANILLOS DORADOS/425197.jpg',
+'/Curaduria/CURADURÍA/ANILLOS/ANILLOS DORADOS/425217.jpg',
+'/Curaduria/CURADURÍA/ANILLOS/ANILLOS DORADOS/425219.jpg',
+'/Curaduria/CURADURÍA/ANILLOS/ANILLOS DORADOS/425338.jpg', ],
+        plateados: [
+           '/Curaduria/CURADURÍA/ANILLOS/ANILLOS PLATEADOS/124594.jpg',
+'/Curaduria/CURADURÍA/ANILLOS/ANILLOS PLATEADOS/225136.jpg',
+'/Curaduria/CURADURÍA/ANILLOS/ANILLOS PLATEADOS/425159.jpg',
+'/Curaduria/CURADURÍA/ANILLOS/ANILLOS PLATEADOS/4251510.jpg',
+'/Curaduria/CURADURÍA/ANILLOS/ANILLOS PLATEADOS/PH42334.jpg'
+        ],
+        
+    },
+    collares: {
+        dorados: [
+           '/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/124393.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/124462L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/124482L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/124682.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/124684.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/124686.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/124688.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/124704L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/124707.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/124712.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/124713.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/124715.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/124717.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/125141.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/125143L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/125152L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/125162L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/125163.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/225076L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/225113.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/225156.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/324045.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/324062.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/324132.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/324135.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/324161.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/324183L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/324185.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/324272L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/324273.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/324302L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/324306.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/324314L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/324445.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/324452L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/324475.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/324486L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/324505.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/324506.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/324562LCOLLAR.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/324586L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/324593.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/324594L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/324595L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/324599.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/324613.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/324616L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/324619L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/325073L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/325152.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/325161.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/424063L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/424072L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/424123L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/424132L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/424184L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/424186.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/424215.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/424253L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/424255.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/424256.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/424282.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/424284L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/424313.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/424314.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/424425L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/424432.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/424463L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/424482L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/424523.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/424524.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/424524(1).jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/424527.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/424544L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/424556.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/424604L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/425031L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/425071L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/425093.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/425095.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/425123.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/425181L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/425193L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/425212L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/425334L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/425441L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/425525.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/425597L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/425598L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/524245L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/1246811.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES DORADOS/3246113.jpg'
+        
+   , ] ,
+   plateados: [
+    '/Curaduria/CURADURÍA/COLLARES/COLLARES PLATEADOS/124032.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES PLATEADOS/124572.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES PLATEADOS/225022.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES PLATEADOS/324094L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES PLATEADOS/324095.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES PLATEADOS/324478L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES PLATEADOS/325034.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES PLATEADOS/325157.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES PLATEADOS/424042.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES PLATEADOS/424164L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES PLATEADOS/424165L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES PLATEADOS/424274L.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES PLATEADOS/425042.jpg',
+'/Curaduria/CURADURÍA/COLLARES/COLLARES PLATEADOS/425044L.jpg'
+            
+        ]
+
+    },
+    ojo_turco: [
+        '/Curaduria/CURADURÍA/JOYERÍA DE OJO TURCO/425486L.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA DE OJO TURCO/425513L.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA DE OJO TURCO/425518.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA DE OJO TURCO/425521.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA DE OJO TURCO/425522L.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA DE OJO TURCO/425523.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA DE OJO TURCO/425541L.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA DE OJO TURCO/425541L(1).jpg',
+'/Curaduria/CURADURÍA/JOYERÍA DE OJO TURCO/3244710.jpg'
+    ],
+    playa: [
+        '/Curaduria/CURADURÍA/JOYERÍA DE PLAYA/425581.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA DE PLAYA/425582.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA DE PLAYA/425583.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA DE PLAYA/425584.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA DE PLAYA/425585.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA DE PLAYA/425586.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA DE PLAYA/425587L.jpg'
+    ],
+    personalizable: [
+        '/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324561L-1.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324561L-2.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324561L-3.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324561L-4.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324561L-5.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324561L-6.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324561L-7.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324561L-8.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324561L-9.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324561L-10.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324561L-11.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324561L-12.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324564-A.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324564-D.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324564-E.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324564-H.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324564-I.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324564-J.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324564-L.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324564-M.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324564-N.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324564-O.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324564-R.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324564-S.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324564-T.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324564-X.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324564-Y.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/324564-Z.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/425073L.jpg',
+'/Curaduria/CURADURÍA/JOYERÍA PERSONALIZABLE/JOYERÍAPERSONALIZABLE/425074L.jpg'
+    ],
+    perlas: [
+        '/Curaduria/CURADURÍA/PERLAS/125052.jpg',
+'/Curaduria/CURADURÍA/PERLAS/324191L.jpg',
+'/Curaduria/CURADURÍA/PERLAS/324192.jpg',
+'/Curaduria/CURADURÍA/PERLAS/324197L.jpg',
+'/Curaduria/CURADURÍA/PERLAS/324479.jpg',
+'/Curaduria/CURADURÍA/PERLAS/424121.jpg',
+'/Curaduria/CURADURÍA/PERLAS/424125.jpg',
+'/Curaduria/CURADURÍA/PERLAS/424131L.jpg',
+'/Curaduria/CURADURÍA/PERLAS/424133L.jpg',
+'/Curaduria/CURADURÍA/PERLAS/424134.jpg',
+'/Curaduria/CURADURÍA/PERLAS/424136.jpg',
+'/Curaduria/CURADURÍA/PERLAS/424137.jpg',
+'/Curaduria/CURADURÍA/PERLAS/424271.jpg',
+'/Curaduria/CURADURÍA/PERLAS/424272.jpg',
+'/Curaduria/CURADURÍA/PERLAS/424273.jpg',
+'/Curaduria/CURADURÍA/PERLAS/425061L.jpg',
+'/Curaduria/CURADURÍA/PERLAS/425062.jpg',
+'/Curaduria/CURADURÍA/PERLAS/425063.jpg',
+'/Curaduria/CURADURÍA/PERLAS/425065.jpg',
+'/Curaduria/CURADURÍA/PERLAS/425069L.jpg',
+'/Curaduria/CURADURÍA/PERLAS/425071L.jpg',
+'/Curaduria/CURADURÍA/PERLAS/425072.jpg'
+    ],
+    pulseras: [
+        '/Curaduria/CURADURÍA/PULSERAS/124065.jpg',
+'/Curaduria/CURADURÍA/PULSERAS/124185.jpg',
+'/Curaduria/CURADURÍA/PULSERAS/124195.jpg',
+'/Curaduria/CURADURÍA/PULSERAS/124456.jpg',
+'/Curaduria/CURADURÍA/PULSERAS/124564.jpg',
+'/Curaduria/CURADURÍA/PULSERAS/225057.jpg',
+'/Curaduria/CURADURÍA/PULSERAS/324167.jpg',
+'/Curaduria/CURADURÍA/PULSERAS/324307L.jpg',
+'/Curaduria/CURADURÍA/PULSERAS/324316L.jpg',
+'/Curaduria/CURADURÍA/PULSERAS/324347L.jpg',
+'/Curaduria/CURADURÍA/PULSERAS/324447L.jpg',
+'/Curaduria/CURADURÍA/PULSERAS/324483L.jpg',
+'/Curaduria/CURADURÍA/PULSERAS/324487L.jpg',
+'/Curaduria/CURADURÍA/PULSERAS/324565 PULSERA.jpg',
+'/Curaduria/CURADURÍA/PULSERAS/325158.jpg',
+'/Curaduria/CURADURÍA/PULSERAS/424227L.jpg',
+'/Curaduria/CURADURÍA/PULSERAS/424317.jpg',
+'/Curaduria/CURADURÍA/PULSERAS/424367.jpg',
+'/Curaduria/CURADURÍA/PULSERAS/424396.jpg',
+'/Curaduria/CURADURÍA/PULSERAS/424468L.jpg',
+'/Curaduria/CURADURÍA/PULSERAS/425037.jpg',
+'/Curaduria/CURADURÍA/PULSERAS/425337.jpg',
+'/Curaduria/CURADURÍA/PULSERAS/425489.jpg',
+'/Curaduria/CURADURÍA/PULSERAS/1247011.jpg',
+'/Curaduria/CURADURÍA/PULSERAS/3246111L.jpg',
+'/Curaduria/CURADURÍA/PULSERAS/4241810.jpg'
+    ],
+    aretes: {
+        dorados: [
+            '/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/124452L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/124485.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/124487.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/124493L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/124681L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/124685L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/124689L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/124708L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/124716.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/125142.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/125144.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/225062L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/225081.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/225101.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/225152.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/324063.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/324074.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/324137.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/324166.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/324168L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/324184L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/324186L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/324193L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/324275L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/324313.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/324444.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/324481.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/324484.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/324563 ARETES.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/325155.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/424075.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/424154.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/424181.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/424188.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/424211L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/424218.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/424242.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/424245.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/424246L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/424247.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/424248.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/424306L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/424553L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/425211L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/425276L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/425281.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/425282L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/425287.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/425335.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/425394.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/425428.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/425458L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/425591.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/3245910L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/4245212.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/4254211.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES DORADOS/4254510.jpg'
+           
+        ],
+        plateados: [
+            '/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES PLATEADOS/124421.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES PLATEADOS/125027.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES PLATEADOS/225132.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES PLATEADOS/324212L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES PLATEADOS/324474.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES PLATEADOS/324513L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES PLATEADOS/324534.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES PLATEADOS/424394.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES PLATEADOS/425154.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES PLATEADOS/425157.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES PLATEADOS/425332L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES PLATEADOS/425365L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETES PLATEADOS/425367L.jpg'
+            
+        ],
+        aretitos: [
+            '/Curaduria/CURADURÍA/TODO PARA TU OREJA//ARETITOS (plateados y dorados)/124435.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/125151.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/225159.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/324073L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/324485.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/324587L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/324592.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/324597.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/324611.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/324612L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/324614L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/324615L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/324617L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/324618.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/325151.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/424374L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/424376L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/424377L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/424465L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/424492L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/424521L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/424522.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/424525L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/424526.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/424528L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/424541L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/424545L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/424547L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/424548.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/424549.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/424551.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/424552L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/425104.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/425361.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/425524L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/425594L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/425596L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/425599.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/3246110.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/3246112.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/4245210.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/4245411L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/4245510.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/4245512L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/4245513L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARETITOS (plateados y dorados)/4255911.jpg'
+           
+        ],
+        arracadas: [
+            '/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARRACADAS (plateadas y doradas)/124596L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARRACADAS (plateadas y doradas)/225155L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARRACADAS (plateadas y doradas)/324104L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARRACADAS (plateadas y doradas)/324165.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARRACADAS (plateadas y doradas)/324256.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARRACADAS (plateadas y doradas)/324305L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARRACADAS (plateadas y doradas)/324382.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARRACADAS (plateadas y doradas)/324477.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARRACADAS (plateadas y doradas)/324584L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARRACADAS (plateadas y doradas)/325051.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARRACADAS (plateadas y doradas)/424191.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARRACADAS (plateadas y doradas)/424251L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARRACADAS (plateadas y doradas)/424392L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARRACADAS (plateadas y doradas)/424452L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARRACADAS (plateadas y doradas)/424518.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARRACADAS (plateadas y doradas)/424557.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARRACADAS (plateadas y doradas)/425036.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARRACADAS (plateadas y doradas)/425075L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARRACADAS (plateadas y doradas)/425196L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARRACADAS (plateadas y doradas)/425307L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARRACADAS (plateadas y doradas)/425314L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARRACADAS (plateadas y doradas)/425349L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARRACADAS (plateadas y doradas)/425407L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARRACADAS (plateadas y doradas)/425456L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARRACADAS (plateadas y doradas)/425478L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARRACADAS (plateadas y doradas)/425547.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/ARRACADAS (plateadas y doradas)/4245410L.jpg'
+
+            
+        ],
+        cadenas_ear_cuff: [
+            '/Curaduria/CURADURÍA/TODO PARA TU OREJA/CADENAS EAR CUFF/125106L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/CADENAS EAR CUFF/325148.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/CADENAS EAR CUFF/425378L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/CADENAS EAR CUFF/425427L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/CADENAS EAR CUFF/425457L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/CADENAS EAR CUFF/524161.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/CADENAS EAR CUFF/4254212L SÓLO CADENA.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/CADENAS EAR CUFF/4254212L.jpg'
+            
+        ],
+        ear_cuff: [
+            '/Curaduria/CURADURÍA/TODO PARA TU OREJA/EAR CUFF/325074.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/EAR CUFF/325133.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/EAR CUFF/424192.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/EAR CUFF/424212L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/EAR CUFF/424333L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/EAR CUFF/425273L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/EAR CUFF/425373.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/EAR CUFF/425396L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/EAR CUFF/425397L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/EAR CUFF/425398L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/EAR CUFF/425399L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/EAR CUFF/425405L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/EAR CUFF/425408L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/EAR CUFF/425425L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/EAR CUFF/425426L.jpg',
+'/Curaduria/CURADURÍA/TODO PARA TU OREJA/EAR CUFF/425477L.jpg'
+            
+        ]
+    }
+};
+
+document.getElementById('curaduria-btn').addEventListener('click', function() {
+    const categories = document.getElementById('category-buttons');
+    categories.style.display = (categories.style.display === 'none') ? 'block' : 'none';
+});
+
+function showImages(category) {
+    const gallery = document.getElementById('gallery');
+    const subcategories = document.getElementById('subcategory-buttons');
+
+    // Limpiar galería y subcategorías
+    gallery.innerHTML = '';
+    subcategories.innerHTML = '';
+
+    // Verificar si la categoría tiene subcategorías
+    if (category === 'anillos' || category === 'aretes' || category === 'collares') {
+        let subcatHTML = '';
+
+        if (category === 'anillos') {
+            subcatHTML = `
+                <button onclick="showImages('anillos-dorados')">Anillos Dorados</button>
+                <button onclick="showImages('anillos-plateados')">Anillos Plateados</button>
+            `;
+        } else if (category === 'aretes') {
+            subcatHTML = `
+                <button onclick="showImages('aretes-dorados')">Aretes Dorados</button>
+                <button onclick="showImages('aretes-plateados')">Aretes Plateados</button>
+                <button onclick="showImages('aretes-aretitos')">Aretitos (Plateados y Dorados)</button>
+                <button onclick="showImages('aretes-arracadas')">Arracadas (Plateadas y Doradas)</button>
+                <button onclick="showImages('aretes-cadenas_ear_cuff')">Cadenas Ear Cuff</button>
+                <button onclick="showImages('aretes-ear_cuff')">Ear Cuff</button>
+            `;
+        } else if (category === 'collares') {
+            subcatHTML = `
+                <button onclick="showImages('collares-dorados')">Collares Dorados</button>
+                <button onclick="showImages('collares-plateados')">Collares Plateados</button>
+            `;
+        }
+
+        subcategories.innerHTML = subcatHTML;
+        return;
+    }
+
+    // Si no es una categoría principal, cargar imágenes
+    let imagesToShow = [];
+    if (category === 'anillos-dorados') {
+        imagesToShow = imagePaths.anillos.dorados;
+    } else if (category === 'anillos-plateados') {
+        imagesToShow = imagePaths.anillos.plateados;
+    } else if (category === 'aretes-dorados') {
+        imagesToShow = imagePaths.aretes.dorados;
+    } else if (category === 'aretes-plateados') {
+        imagesToShow = imagePaths.aretes.plateados;
+    } else if (category === 'aretes-aretitos') {
+        imagesToShow = imagePaths.aretes.aretitos;
+    } else if (category === 'aretes-arracadas') {
+        imagesToShow = imagePaths.aretes.arracadas;
+    } else if (category === 'aretes-cadenas_ear_cuff') {
+        imagesToShow = imagePaths.aretes.cadenas_ear_cuff;
+    } else if (category === 'aretes-ear_cuff') {
+        imagesToShow = imagePaths.aretes.ear_cuff;
+    } else if (category === 'collares-dorados') {
+        imagesToShow = imagePaths.collares.dorados;
+    } else if (category === 'collares-plateados') {
+        imagesToShow = imagePaths.collares.plateados;
+    } else {
+        imagesToShow = imagePaths[category] || [];
+    }
+
+    imagesToShow.forEach(path => {
+        const img = document.createElement('img');
+        img.src = path;
+        gallery.appendChild(img);
+    });
+}
+</script>
+
+</body>
+</html>
