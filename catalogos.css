@@ -20,75 +20,52 @@ body {
   min-height: 100vh;
 }
 
-/* Estilo para el encabezado */
-.btn {
-  background-color: #e8dcdc;
-  border: 2px solid #68412f;
-  padding: 10px 20px;
-  margin: 10px;
-  text-decoration: none;
-  font-size: 16px;
-  color: #68412f;
-  border-radius: 5px;
-  display: inline-block;
-  cursor: pointer;
-  transition: background-color 0.3s;
+/* Estilos generales de la página */
+body {
+  /* ... */
 }
 
-.btn:hover {
+/* Centrado del título "Catálogos de Platine Rose" */
+header h2 {
+  text-align: center;
+  font-size: 24px;
+  color: #000;
+  margin: 20px 0;
+}
+
+/* Centrado del contenedor de catálogos */
+.catalogos-container {
+  text-align: center;
+  margin: 30px auto;
+}
+
+/* Botones de catálogo ajustados */
+.catalogos-buttons .btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 16px;
+  background-color: #e8dcdc;
+  color: #68412f;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 2px solid #68412f;
+  transition: background-color 0.3s ease;
+  max-width: 250px;
+  width: auto;
+}
+
+.catalogos-buttons .btn:hover {
   background-color: #f0e0e0;
 }
 
-/* Estilos para el footer */
-footer {
-  padding: 20px;
-  text-align: center;
-}
-
-/* Estilo para el logo en el footer */
+/* Logo en el footer */
 .logo-footer {
-  width: 150px;  /* Ajusta el tamaño del logo */
-  height: auto;  /* Mantiene la proporción */
+  width: 150px;
+  margin: 20px auto;
   display: block;
-  margin: 0 auto;  /* Centra el logo */
 }
 
-/* Estilo para el texto en el footer */
-footer p {
-  margin-top: 10px;
-  font-size: 14px;
-  color: #333;
-}
-/* Media Queries para pantallas más pequeñas (menos de 768px) */
-@media (max-width: 768px) {
-  /* Ajusta el tamaño de los títulos */
-  h1 {
-      font-size: 24px;
-  }
-
-  h2 {
-      font-size: 20px;
-  }
-
-  /* Ajusta los botones para pantallas medianas */
-  .btn {
-      font-size: 14px;
-      padding: 12px 16px;
-      width: auto; /* Permite que el botón se ajuste al contenido */
-  }
-
-  .catalogos-buttons {
-      flex-direction: column; /* Pone los botones en columna */
-  }
-
-  .content-container {
-      padding: 10px;
-  }
-
-  footer p {
-      font-size: 12px;
-  }
-}
 
 /* Media Queries para pantallas pequeñas (menos de 480px) */
 @media (max-width: 480px) {
